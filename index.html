@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Tipp topp!</title>
+    <style>
+        h1 {
+            color: darkred;
+        }
+        div {
+            color: darkslateblue;
+            background-color: deepskyblue;
+            padding: 10px;
+            margin: 10px;
+            border: solid green 4px;
+            width: 30px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            margin: auto;
+        }
+
+        div.førstPåLinja {
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="r1k1" onclick="trykk(this, 'r1k2', 'r2k1', 'r2k1', 'r2k1')">6</div>
+    <div id="r1k2" onclick="trykk(this, 'r1k1', 'r1k3', 'r2k2', 'r2k2')"></div>
+    <div id="r1k3" onclick="trykk(this, 'r1k2', 'r2k3', 'r2k3', 'r1k2')">2</div>
+
+    <div id="r2k1" class="førstPåLinja"onclick="trykk(this, 'r1k1', 'r2k2', 'r3k1', 'r3k1')">5</div>
+    <div id="r2k2" onclick="trykk(this, 'r1k2', 'r2k1', 'r2k3', 'r3k2')">8</div>
+    <div id="r2k3" onclick="trykk(this, 'r1k3', 'r2k2', 'r3k3', 'r3k3')">3</div>
+
+    <div id="r3k1" class="førstPåLinja"onclick="trykk(this, 'r2k1', 'r3k2', 'r3k2', 'r3k2')">7</div>
+    <div id="r3k2" onclick="trykk(this, 'r2k2', 'r3k1', 'r3k3', 'r3k3')">1</div>
+    <div id="r3k3" onclick="trykk(this, 'r2k3', 'r3k2', 'r3k2', 'r3k2')">4</div>
+
+    <script>
+
+        
+
+        function trykk(tagElement, alt1, alt2, alt3, alt4) {
+
+            const alt = [alt1, alt2, alt3, alt4];
+
+            for (var i = 0; i < 4; i++) {
+                if (document.getElementById(alt[i]).innerHTML == '') {
+                    document.getElementById(alt[i]).innerHTML = tagElement.innerHTML;
+                    tagElement.innerHTML = '';
+                }
+            }
+
+            const ruteVerdi = {                                         //////////////////////////////////////////////////
+                "r1k1": '1',                                            // Jeg skrev mesteparten av koden selv, utenom  //
+                "r1k2": '2',                                            // denne delen. Orginalt lagde jeg en if        //  
+                "r1k3": '3',                                            // settning som sjekket alle sammen med åtte    //
+                "r2k1": '4',                                            // AND operatører, men jeg visste at man kunne  //
+                "r2k2": '5',                                            // gjøre det bedre så jeg søkte litt på nettet. //
+                "r2k3": '6',                                            // Da fikk jeg denne koden. Det er første gang  //
+                "r3k1": '7',                                            // ordentlig skrive HTML og javascript, men     //
+                "r3k2": '8',                                            // det er jo mye som ligner på python og C++    //
+                "r3k3": '',                                             //                                              //
+            };                                                          //                                              //
+                                                                        //                                              //
+            let alleRiktig = true;                                      //                                              //
+                                                                        //                                              //
+            for (const radkol in ruteVerdi) {                           //                                              //
+                const verdi = ruteVerdi[radkol];                        //                                              //
+                const element = document.getElementById(radkol);        //                                              //
+                                                                        //                                              //
+                if (element && element.innerHTML !== verdi) {           //                                              //
+                    alleRiktig = false;                                 //                                              //
+                    break;                                              //                                              //
+                }                                                       //                                              //
+            }                                                           //                                              //
+                                                                        //                                              //
+            if (alleRiktig) {                                           //                                              //
+                alert("Gratulerer! Du greide det!");                    //                                              //
+            }                                                           //////////////////////////////////////////////////
+        }
+    </script>
+</body>
+</html>
